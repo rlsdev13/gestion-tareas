@@ -1,0 +1,6 @@
+@host = http://127.0.0.1:8080
+@endpoint = users
+
+### Get all users
+GET {{host}}/{{endpoint}}?limit=5&offset=0
+Content-Type: application/json
