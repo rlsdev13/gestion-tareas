@@ -1,11 +1,10 @@
-import { Body, Controller, Get, Post, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { CreateTaskDto } from './dtos/tasks.dto';
 import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
 import { TasksService } from './tasks.service';
-import { JwtStrategy } from 'src/auth/jwt/jwt.strategy';
 
 @Controller('tasks')
-@UseGuards(JwtStrategy)
+@UseGuards(JwtAuthGuard)
 export class TasksController {
 
     constructor(private readonly taskService : TasksService ){}
@@ -15,6 +14,10 @@ export class TasksController {
         return await this.taskService.getAllTasks(Number(limit),Number(offset));
     }
     
+    @Get(':id')
+    async getTaskById(@Param() id : string ){
+        return await this.taskService.getTaskById(id);
+    }
 
     @Post()
     async createTask(@Body() dataTask : CreateTaskDto, @Request() req ){

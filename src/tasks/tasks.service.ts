@@ -1,6 +1,7 @@
 import { EntityRepository, ObjectId } from '@mikro-orm/mongodb';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Users } from './../users/users.entity';
 import { CreateTaskDto } from './dtos/tasks.dto';
 import { Tasks } from './tasks.entity';
 
@@ -31,7 +32,26 @@ export class TasksService {
         }
     }
 
-    
+    /**
+     * function to get a tasks by id stored in the database (only task !deleted)
+     * 
+     * @param taskId task id to search
+     * @returns a task object with all its information
+     */
+    async getTaskById( taskId : string ) : Promise<Tasks>{
+        try {
+            const task = await this.tasksRepo.findOne({ _id : new ObjectId(taskId), deleted : false },{ populate : true });
+
+            if(!task){
+                throw new NotFoundException();
+            }
+
+            return task;
+        } catch (error) {
+            throw new InternalServerErrorException();
+        }
+    }
+
     /**
      * function to create a new task and stored in db, the user is obtained 
      * through the previous validation of the jwt and passed through the request

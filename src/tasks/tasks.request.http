@@ -1,9 +1,16 @@
 @host = http://127.0.0.1:8080
 @endpoint = tasks
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyMjk2NzEsImV4cCI6MTY3NjIzMTQ3MX0.W7rGBmBPhEyC3DrzF7O5FqE_7SFohrNSHfZk4-n1m28
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyNDA2MjgsImV4cCI6MTY3NjI0MjQyOH0.NvNfsbY1ynWTO6at6zDuUQBlTf3gC-9FYd99qoOLcEU
+@taskId = 63e951eed7a7626d32741395
+
 
 ### Get all tasks
 GET {{host}}/{{endpoint}}?limit=5&offset=0
+Content-Type: application/json
+Authorization: bearer {{token}}
+
+### Get task by id
+GET {{host}}/{{endpoint}}/{{taskId}}
 Content-Type: application/json
 Authorization: bearer {{token}}
 
@@ -13,8 +20,8 @@ Content-Type: application/json
 Authorization: bearer {{token}}
 
 {
-    "title" : "Tarea1",
-    "description" : "Descripcion de la tarea1",
+    "title" : "Tarea2",
+    "description" : "Descripcion de la tarea2",
     "status" : false,
     "deadline" : "2023-03-22T03:00:00.000Z",
     "comments" : "Comentarios para la tarea 1",
