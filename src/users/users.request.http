@@ -4,3 +4,14 @@
 ### Get all users
 GET {{host}}/{{endpoint}}?limit=5&offset=0
 Content-Type: application/json
+
+### Create user
+Post {{host}}/{{endpoint}}
+Content-Type: application/json
+
+{
+    "name" : "User1",
+    "lastName" : "Ledesma",
+    "email" : "rafa.rls@gmail.com",
+    "password" : "123456"
+}

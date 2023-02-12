@@ -1,6 +1,7 @@
 import { EntityRepository } from '@mikro-orm/mongodb';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { CreateUserDto } from './dtos/user.dto';
 import { Users } from './users.entity';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class UsersService {
     constructor(@InjectRepository(Users) private readonly usersRepo : EntityRepository<Users>){}
 
     /**
-     * function for get all the users stored in the database (only users !deleted)
+     * function to get all the users stored in the database (only users !deleted)
      * 
      * @param limit number of number of records to get 
      * @param offset since what record start
@@ -27,6 +28,23 @@ export class UsersService {
                 total
             }
 
+        } catch (error) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    /**
+     * function to create a new user and stored in db
+     * 
+     * @param user 
+     * @returns a user after stored in DB
+     */
+
+    async createUser( user : CreateUserDto ) : Promise<Users> {
+        try {
+            const newUser = this.usersRepo.create( user );
+            await this.usersRepo.persistAndFlush( newUser );
+            return newUser;
         } catch (error) {
             throw new InternalServerErrorException();
         }
