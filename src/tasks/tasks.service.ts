@@ -1,8 +1,7 @@
 import { EntityRepository, ObjectId } from '@mikro-orm/mongodb';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { Users } from './../users/users.entity';
-import { CreateTaskDto } from './dtos/tasks.dto';
+import { CreateTaskDto, UpdateTaskDto } from './dtos/tasks.dto';
 import { Tasks } from './tasks.entity';
 
 @Injectable()
@@ -70,5 +69,31 @@ export class TasksService {
             throw new InternalServerErrorException();
         }
     }
+
+
+    /**
+     * function for update a task
+     * 
+     * @param taskId task id to update
+     * @param taskData data to be updated
+     * @returns task
+     */
+    async updateTask( taskId : string, taskData : UpdateTaskDto ) : Promise<Tasks> {
+        try {
+            const task = await this.tasksRepo.findOne({ _id : new ObjectId(taskId), deleted : false });
+
+            if( !task ){
+                throw new NotFoundException();
+            }
+
+            Object.assign( task, taskData );
+            await this.tasksRepo.persistAndFlush(task);
+
+            return task;
+        } catch (error) {
+            throw new InternalServerErrorException();
+        }
+    }
+
 
 }

@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Param, Post, Query, Request, UseGuards } from '@nestjs/common';
-import { CreateTaskDto } from './dtos/tasks.dto';
+import { Body, Controller, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
+import { CreateTaskDto, UpdateTaskDto } from './dtos/tasks.dto';
 import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
 import { TasksService } from './tasks.service';
 
@@ -15,12 +15,17 @@ export class TasksController {
     }
     
     @Get(':id')
-    async getTaskById(@Param() id : string ){
+    async getTaskById(@Param('id') id : string ){
         return await this.taskService.getTaskById(id);
     }
 
     @Post()
     async createTask(@Body() dataTask : CreateTaskDto, @Request() req ){
         return await this.taskService.createTask(dataTask, req.user._id)
+    }
+
+    @Put(':id')
+    async updateTask(@Param('id') idTask : string, @Body() dataTask : UpdateTaskDto){
+        return await this.taskService.updateTask(idTask,dataTask);
     }
 }

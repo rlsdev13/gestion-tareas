@@ -1,7 +1,7 @@
 @host = http://127.0.0.1:8080
 @endpoint = tasks
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyNDA2MjgsImV4cCI6MTY3NjI0MjQyOH0.NvNfsbY1ynWTO6at6zDuUQBlTf3gC-9FYd99qoOLcEU
-@taskId = 63e951eed7a7626d32741395
+@taskId = 63e96904d21b48ce3c7ea499
 
 
 ### Get all tasks
@@ -26,4 +26,13 @@ Authorization: bearer {{token}}
     "deadline" : "2023-03-22T03:00:00.000Z",
     "comments" : "Comentarios para la tarea 1",
     "tags" : ["work","tasks"]
+}
+
+###Update Task
+PUT {{host}}/{{endpoint}}/{{taskId}}
+Content-Type: application/json
+Authorization: bearer {{token}}
+
+{
+    "title" : "Tarea 2 update"
 }
