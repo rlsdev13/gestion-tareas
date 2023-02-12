@@ -1,7 +1,7 @@
-import { EntityRepository } from '@mikro-orm/mongodb';
+import { EntityRepository, ObjectId } from '@mikro-orm/mongodb';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateUserDto } from './dtos/user.dto';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { CreateUserDto, UpdateUserDto } from './dtos/user.dto';
 import { Users } from './users.entity';
 
 @Injectable()
@@ -49,4 +49,29 @@ export class UsersService {
             throw new InternalServerErrorException();
         }
     }
+
+    /**
+     * function to update a user
+     * 
+     * @param idUser id of the user 
+     * @param userData data to be updated
+     * @returns user
+     */
+    async updateUser( idUser : string, userData : UpdateUserDto ) : Promise<Users> {
+        try {
+            const user = await this.usersRepo.findOne({ _id : new ObjectId(idUser), deleted : false });
+
+            if( !user ){
+                throw new Error(`User with id ${idUser} not found`);
+            }
+
+            Object.assign( user, userData );
+            await this.usersRepo.persistAndFlush(user);
+
+            return user;
+        } catch (error) {
+            throw new NotFoundException();
+        }
+    }
+
 }

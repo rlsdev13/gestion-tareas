@@ -1,5 +1,6 @@
 @host = http://127.0.0.1:8080
 @endpoint = users
+@idUser = 63e85326912c90568e9691b0
 
 ### Get all users
 GET {{host}}/{{endpoint}}?limit=5&offset=0
@@ -14,4 +15,12 @@ Content-Type: application/json
     "lastName" : "Ledesma",
     "email" : "rafa.rls@gmail.com",
     "password" : "123456"
+}
+
+### Update user
+PUT {{host}}/{{endpoint}}/{{idUser}}
+Content-Type: application/json
+
+{
+    "email" : "rafa.rls.rls@gmail.com"
 }
