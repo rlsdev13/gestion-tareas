@@ -1,0 +1,11 @@
+@host = http://127.0.0.1:8080
+@endpoint = auth
+
+### Login
+Post {{host}}/{{endpoint}}
+Content-Type: application/json
+
+{
+    "email" : "rafa.rls.rl@gmail.com",
+    "password" : "123456"
+}
