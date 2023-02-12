@@ -1,14 +1,17 @@
 @host = http://127.0.0.1:8080
 @endpoint = users
 @idUser = 63e8576092b6120798535240
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyMjk2NzEsImV4cCI6MTY3NjIzMTQ3MX0.W7rGBmBPhEyC3DrzF7O5FqE_7SFohrNSHfZk4-n1m28
 
 ### Get all users
 GET {{host}}/{{endpoint}}?limit=5&offset=0
 Content-Type: application/json
+Authorization: bearer {{token}}
 
 ### Get user by ID
 GET {{host}}/{{endpoint}}/{{idUser}}
 Content-Type: application/json
+Authorization: bearer {{token}}
 
 ### Create user
 Post {{host}}/{{endpoint}}
@@ -24,6 +27,7 @@ Content-Type: application/json
 ### Update user
 PUT {{host}}/{{endpoint}}/{{idUser}}
 Content-Type: application/json
+Authorization: bearer {{token}}
 
 {
     "email" : "rafa.rls.rls@gmail.com"
@@ -32,3 +36,4 @@ Content-Type: application/json
 ### Delete user
 DELETE {{host}}/{{endpoint}}/{{idUser}}
 Content-Type: application/json
+Authorization: bearer {{token}}

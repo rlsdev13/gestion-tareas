@@ -6,6 +6,6 @@ Post {{host}}/{{endpoint}}
 Content-Type: application/json
 
 {
-    "email" : "rafa.rls.rl@gmail.com",
+    "email" : "rafa.rls.rls@gmail.com",
     "password" : "123456"
 }
