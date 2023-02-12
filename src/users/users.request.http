@@ -24,3 +24,7 @@ Content-Type: application/json
 {
     "email" : "rafa.rls.rls@gmail.com"
 }
+
+### Delete user
+DELETE {{host}}/{{endpoint}}/{{idUser}}
+Content-Type: application/json

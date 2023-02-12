@@ -74,4 +74,27 @@ export class UsersService {
         }
     }
 
+    /**
+     * function to soft delete a user from te db
+     * 
+     * @param idUser id of the user
+     * @returns user deleted
+     */
+    async deleteUser( idUser : string ) : Promise<Users>{
+        try {
+            const user = await this.usersRepo.findOne({ _id : new ObjectId(idUser), deleted : false });
+            
+            if( !user ){
+                throw new Error(`User with id ${idUser} not found`);
+            }
+
+            user.deleted = true;
+            await this.usersRepo.persistAndFlush( user );
+
+            return user;
+        } catch (error) {
+            throw new NotFoundException();
+        }
+    }
+
 }
