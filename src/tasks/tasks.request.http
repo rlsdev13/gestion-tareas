@@ -2,6 +2,10 @@
 @endpoint = tasks
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyMjk2NzEsImV4cCI6MTY3NjIzMTQ3MX0.W7rGBmBPhEyC3DrzF7O5FqE_7SFohrNSHfZk4-n1m28
 
+### Get all tasks
+GET {{host}}/{{endpoint}}?limit=5&offset=0
+Content-Type: application/json
+Authorization: bearer {{token}}
 
 ###Create Task
 Post {{host}}/{{endpoint}}
