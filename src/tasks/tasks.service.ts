@@ -47,7 +47,7 @@ export class TasksService {
 
             return task;
         } catch (error) {
-            throw new InternalServerErrorException();
+            throw new NotFoundException();
         }
     }
 
@@ -72,7 +72,7 @@ export class TasksService {
 
 
     /**
-     * function for update a task
+     * function to update a task
      * 
      * @param taskId task id to update
      * @param taskData data to be updated
@@ -95,5 +95,28 @@ export class TasksService {
         }
     }
 
+
+    /**
+     * function to soft delete a task from DB
+     * 
+     * @param taskId task id to update
+     * @returns task
+     */
+    async deleteTask( taskId : string ) : Promise<Tasks> {
+        try {
+            const task = await this.tasksRepo.findOne({ _id : new ObjectId(taskId), deleted : false });
+
+            if( !task ){
+                throw new NotFoundException();
+            }
+
+            task.deleted = true;
+            await this.tasksRepo.persistAndFlush(task);
+
+            return task;
+        } catch (error) {
+            throw new InternalServerErrorException();
+        }
+    }
 
 }

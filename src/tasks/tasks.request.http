@@ -36,3 +36,8 @@ Authorization: bearer {{token}}
 {
     "title" : "Tarea 2 update"
 }
+
+###Delete Task
+DELETE  {{host}}/{{endpoint}}/{{taskId}}
+Content-Type: application/json
+Authorization: bearer {{token}}
