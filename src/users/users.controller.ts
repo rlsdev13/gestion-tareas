@@ -12,6 +12,11 @@ export class UsersController {
         return await this.usersService.getAllUsers(Number(limit),Number(offset));
     }
 
+    @Get(':id')
+    async getUserById( @Param('id') id : string ){
+        return await this.usersService.getUserById(id);
+    }
+
     @Post()
     async createUser( @Body() userData : CreateUserDto ){
         return await this.usersService.createUser( userData );

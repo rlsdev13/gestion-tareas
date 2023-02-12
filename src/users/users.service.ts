@@ -34,6 +34,28 @@ export class UsersService {
     }
 
     /**
+     * function to find a User by Id
+     * 
+     * @param idUser id of the user
+     * @returns the user if exist
+     */
+    async getUserById( idUser : string ) : Promise<Users>{
+        try {
+            const user = await this.usersRepo.findOne({ _id : new ObjectId(idUser), deleted : false });
+
+            if(!user){
+                throw new Error('User not found');
+            }
+
+            return user;
+            
+        } catch (error) {
+            throw new NotFoundException();
+        }
+    }
+
+
+    /**
      * function to create a new user and stored in db
      * 
      * @param user 

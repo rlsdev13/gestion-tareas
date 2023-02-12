@@ -1,9 +1,13 @@
 @host = http://127.0.0.1:8080
 @endpoint = users
-@idUser = 63e85326912c90568e9691b0
+@idUser = 63e8576092b6120798535240
 
 ### Get all users
 GET {{host}}/{{endpoint}}?limit=5&offset=0
+Content-Type: application/json
+
+### Get user by ID
+GET {{host}}/{{endpoint}}/{{idUser}}
 Content-Type: application/json
 
 ### Create user
