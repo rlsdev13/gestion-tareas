@@ -1,7 +1,7 @@
 @host = http://127.0.0.1:8080
 @endpoint = tasks
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyNDA2MjgsImV4cCI6MTY3NjI0MjQyOH0.NvNfsbY1ynWTO6at6zDuUQBlTf3gC-9FYd99qoOLcEU
-@taskId = 63e96904d21b48ce3c7ea499
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2VhNTEyYzZiODg2NjkyZGQ5YzIxZGIiLCJpYXQiOjE2NzYzMDA4NDAsImV4cCI6MTY3NjMwMTE0MH0.o2By2VPjoSWQM6OlCtpBN0M_0glNVrA79GNwCBBNsc4
+@taskId = 63ea523c6b886692dd9c21de
 
 
 ### Get all tasks
@@ -24,7 +24,7 @@ Authorization: bearer {{token}}
     "description" : "Descripcion de la tarea2",
     "status" : false,
     "deadline" : "2023-03-22T03:00:00.000Z",
-    "comments" : "Comentarios para la tarea 1",
+    "comments" : "Comentarios para la tarea 2",
     "tags" : ["work","tasks"]
 }
 
@@ -34,7 +34,7 @@ Content-Type: application/json
 Authorization: bearer {{token}}
 
 {
-    "title" : "Tarea 2 update"
+    "comments" : "Tarea 2 update comentarios"
 }
 
 ###Delete Task

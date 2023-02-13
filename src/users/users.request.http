@@ -1,7 +1,7 @@
 @host = http://127.0.0.1:8080
 @endpoint = users
-@idUser = 63e8576092b6120798535240
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4NTMyNjkxMmM5MDU2OGU5NjkxYjAiLCJpYXQiOjE2NzYyMjk2NzEsImV4cCI6MTY3NjIzMTQ3MX0.W7rGBmBPhEyC3DrzF7O5FqE_7SFohrNSHfZk4-n1m28
+@idUser = 63ea51386b886692dd9c21dc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U5YTEyMDUzOGYyOWRkMGE4MmE0YjUiLCJpYXQiOjE2NzYzMDA1NDAsImV4cCI6MTY3NjMwMDg0MH0.lH-BhJBAM1L-KJPeshJdTd2Rk4Dx89rOOOGBQWyPKVM
 
 ### Get all users
 GET {{host}}/{{endpoint}}?limit=5&offset=0
@@ -18,9 +18,9 @@ Post {{host}}/{{endpoint}}
 Content-Type: application/json
 
 {
-    "name" : "User1",
-    "lastName" : "Ledesma",
-    "email" : "rafa.rls@gmail.com",
+    "name" : "User3",
+    "lastName" : "user #3",
+    "email" : "user3@gmail.com",
     "password" : "123456"
 }
 
@@ -30,7 +30,8 @@ Content-Type: application/json
 Authorization: bearer {{token}}
 
 {
-    "email" : "rafa.rls.rls@gmail.com"
+    "name" : "User3 Updated",
+    "email" : "user3up@gmail.com"
 }
 
 ### Delete user
