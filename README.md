@@ -71,6 +71,10 @@ Instalación de dependencias
 ``` bash
     npm install
 ```
+Crear el archivo .env en en la raiz del proyecto. (El ejemplo se encuentra como .env.example)
+``` bash
+    /.env
+```
 Una vez instaladas las dependencias se puede correr el servidor de manera local.
 ``` bash
     npm run start:dev
